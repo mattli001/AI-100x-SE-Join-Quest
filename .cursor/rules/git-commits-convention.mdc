@@ -20,10 +20,10 @@ alwaysApply: false
 
 ## Rules
 - 嚴格遵循 commit header 的格式規範：`<type>(<scope>): <subject>`
-- 確保 type 只使用允許的類別：feat, fix, docs, style, refactor, perf, test, chore, revert
-- subject 必須簡潔明確，不超過 50 個字元，不加句號
-- 若有 GitHub issue 編號，必須放在 subject 的開頭，格式為 `#xxx`
-- body 部分每行不超過 72 個字元，說明變動的項目、原因及與先前的對比
+- 確保 <type> 只使用允許的類別：feat, fix, docs, style, refactor, perf, test, chore, revert
+- <subject> 必須簡潔明確，不超過 50 個字元，不加句號
+- 若有 GitHub issue 編號，必須放在 <subject> 的開頭，格式為 `#xxx`
+- body: 將異動依 <type> 進行分層，簡要說明變更內容，每行不超過 72 字元
 - 使用正體中文、台灣習慣用語與詞彙進行回應
 - 遵循詞彙對應規則，如使用「建立」而非「創建」，「品質」而非「質量」
 - 不需額外說明或解釋處理過程，直接輸出標準化的 git commit header & body

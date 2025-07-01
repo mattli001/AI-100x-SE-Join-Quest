@@ -1,0 +1,20 @@
+networks:
+  aisem-network:
+    name: aisem-network
+
+services:
+  aisem.local:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    environment:
+      - TZ=Asia/Taipei
+    volumes:
+      - ..:/app:cached
+      - aisem-command-history-volume:/home/vscode/.history
+    command: sleep infinity
+    networks:
+      - aisem-network
+
+volumes:
+  aisem-command-history-volume:

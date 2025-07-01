@@ -1,7 +1,11 @@
 // For format details, see https://containers.dev/implementors/json_reference/.
 {
 	"name": "aisem-devcontainer",
-	"image": "mcr.microsoft.com/devcontainers/go:1.23",
+	"dockerComposeFile": [
+		"./docker-compose.yml"
+	],
+	"service": "aisem.local",
+	"workspaceFolder": "/app",
 	"features": {
 	},
 	"customizations": {
@@ -20,5 +24,7 @@
 				"GitHub.copilot"
 			]
 		}
-	}
+	},
+	"postStartCommand": "/app/.devcontainer/post_start_command.sh",
+	"postCreateCommand": "/app/.devcontainer/post_create_command.sh"
 }

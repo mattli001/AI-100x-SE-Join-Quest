@@ -1,0 +1,55 @@
+version: "2"
+linters:
+  default: none
+  enable:
+    - errcheck
+    - govet
+    - ineffassign
+    - prealloc
+    - revive
+    - unconvert
+    - unused
+  settings:
+    revive:
+      rules:
+        - name: var-naming
+          arguments:
+            - - ID
+          disabled: true
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - path: (.+)\.go$
+        text: 'package-comments: should have a package comment'
+      - path: (.+)\.go$
+        text: exported (type|const|var|type|method|function) (.+) should have comment
+      - path: (.+)\.go$
+        text: 'exported: comment on exported type'
+    paths:
+      - ./vendor/*
+      - ./docs/*
+      - ./deployments/*
+      - ./build/*
+      - ./tmp/*
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - ./vendor/*
+      - ./docs/*
+      - ./deployments/*
+      - ./build/*
+      - ./tmp/*
+      - third_party$
+      - builtin$
+      - examples$

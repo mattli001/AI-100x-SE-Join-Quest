@@ -1,0 +1,56 @@
+{
+  "go.coverOnSave": true,
+  "go.coverageDecorator": {
+    "type": "gutter",
+    "coveredHighlightColor": "rgba(64,128,128,0.5)",
+    "uncoveredHighlightColor": "rgba(128,64,64,0.25)",
+    "coveredGutterStyle": "blockgreen",
+    "uncoveredGutterStyle": "blockred"
+  },
+  "go.coverOnSingleTest": true,
+  "go.lintTool": "golangci-lint",
+  "go.lintFlags": [
+    "--config=${workspaceFolder}/.golangci.yml",
+    "--fast"
+  ],
+  "go.lintOnSave": "file",
+  "go.useLanguageServer": true,
+  "[go]": {
+    "editor.snippetSuggestions": "none",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    },
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true
+  },
+  "gopls": {
+    "usePlaceholders": true,
+    "buildFlags": [
+      "-tags=integration,mock"
+    ]
+  },
+  "go.testFlags": [
+    "-v",
+    "-failfast",
+    "-timeout=3m"
+  ],
+  "shellcheck.exclude": [
+    "1091"
+  ],
+  "shellcheck.ignorePatterns": {
+    "**/.env*": true,
+    "**/env.example": true,
+  },
+  "markdownlint.lintWorkspaceGlobs": [
+    "**/*.md",
+    "**/*.markdown",
+    "!**/goframe/**",
+    "!**/goframe",
+    "!**/gf-site/**",
+    "!**/gf-site",
+    "!**/docs/r2r",
+    "!**/cursor_**"
+  ],
+  "editor.formatOnSave": false
+}
