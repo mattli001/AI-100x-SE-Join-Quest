@@ -110,3 +110,99 @@ func (s *OrderService) GetReceivedItems(order *domain.Order) []domain.ReceivedIt
 
 	return receivedItems
 }
+
+// GetDiscountDetails 取得折扣詳情
+func (s *OrderService) GetDiscountDetails(order *domain.Order) []domain.DiscountDetail {
+	details := make([]domain.DiscountDetail, 0)
+
+	// 尋找雙十一促銷
+	var doubleElevenPromotion *domain.DoubleElevenPromotion
+	for _, promotion := range s.promotions {
+		if de, ok := promotion.(*domain.DoubleElevenPromotion); ok {
+			doubleElevenPromotion = de
+			break
+		}
+	}
+
+	// 如果沒有雙十一促銷，則所有商品都是原價
+	if doubleElevenPromotion == nil {
+		return s.getRegularPriceDetails(order)
+	}
+
+	// 按商品分組計算詳情
+	productQuantityMap := make(map[string]int)
+	productPriceMap := make(map[string]int)
+
+	for _, item := range order.Items {
+		productName := item.Product.Name
+		productQuantityMap[productName] += item.Quantity
+		productPriceMap[productName] = item.Product.Price
+	}
+
+	// 對每個商品計算折扣詳情
+	for _, item := range order.Items {
+		productName := item.Product.Name
+		totalQuantity := productQuantityMap[productName]
+		unitPrice := productPriceMap[productName]
+
+		// 檢查是否已經處理過這個商品
+		found := false
+		for _, detail := range details {
+			if detail.ProductName == productName {
+				found = true
+				break
+			}
+		}
+
+		if !found {
+			detail := doubleElevenPromotion.CalculateDiscountDetail(productName, totalQuantity, unitPrice)
+			details = append(details, detail)
+		}
+	}
+
+	return details
+}
+
+// getRegularPriceDetails 取得原價詳情（無促銷時使用）
+func (s *OrderService) getRegularPriceDetails(order *domain.Order) []domain.DiscountDetail {
+	details := make([]domain.DiscountDetail, 0)
+
+	// 按商品分組
+	productQuantityMap := make(map[string]int)
+	productPriceMap := make(map[string]int)
+
+	for _, item := range order.Items {
+		productName := item.Product.Name
+		productQuantityMap[productName] += item.Quantity
+		productPriceMap[productName] = item.Product.Price
+	}
+
+	// 對每個商品建立詳情
+	for _, item := range order.Items {
+		productName := item.Product.Name
+		totalQuantity := productQuantityMap[productName]
+		unitPrice := productPriceMap[productName]
+
+		// 檢查是否已經處理過這個商品
+		found := false
+		for _, detail := range details {
+			if detail.ProductName == productName {
+				found = true
+				break
+			}
+		}
+
+		if !found {
+			detail := domain.DiscountDetail{
+				ProductName:        productName,
+				DiscountedQuantity: 0,
+				RegularQuantity:    totalQuantity,
+				DiscountedAmount:   0,
+				RegularAmount:      totalQuantity * unitPrice,
+			}
+			details = append(details, detail)
+		}
+	}
+
+	return details
+}

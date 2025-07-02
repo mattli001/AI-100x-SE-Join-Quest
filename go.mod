@@ -2,9 +2,10 @@ module github.com/mattli001/AI-100x-SE-Join-Quest
 
 go 1.23.9
 
+require github.com/cucumber/godog v0.14.1
+
 require (
 	github.com/cucumber/gherkin/go/v26 v26.2.0 // indirect
-	github.com/cucumber/godog v0.14.1 // indirect
 	github.com/cucumber/messages/go/v21 v21.0.1 // indirect
 	github.com/gofrs/uuid v4.3.1+incompatible // indirect
 	github.com/hashicorp/go-immutable-radix v1.3.1 // indirect
