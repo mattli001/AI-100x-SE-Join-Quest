@@ -7,6 +7,9 @@
 	"service": "aisem.local",
 	"workspaceFolder": "/app",
 	"features": {
+		// ref: https://github.com/devcontainers/features
+		// ref: https://containers.dev/features
+		"ghcr.io/devcontainers/features/node:1": {}
 	},
 	"customizations": {
 		"vscode": {
