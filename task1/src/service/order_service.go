@@ -3,7 +3,7 @@ package service
 import (
 	"fmt"
 
-	"github.com/mattli001/AI-100x-SE-Join-Quest/src/domain"
+	"github.com/mattli001/AI-100x-SE-Join-Quest/task1/src/domain"
 )
 
 // OrderService 處理訂單相關業務邏輯

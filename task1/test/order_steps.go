@@ -6,8 +6,8 @@ import (
 	"strconv"
 
 	"github.com/cucumber/godog"
-	"github.com/mattli001/AI-100x-SE-Join-Quest/src/domain"
-	"github.com/mattli001/AI-100x-SE-Join-Quest/src/service"
+	"github.com/mattli001/AI-100x-SE-Join-Quest/task1/src/domain"
+	"github.com/mattli001/AI-100x-SE-Join-Quest/task1/src/service"
 )
 
 // OrderTestContext 測試上下文
