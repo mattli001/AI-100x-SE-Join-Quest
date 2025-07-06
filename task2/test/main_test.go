@@ -12,7 +12,7 @@ func TestMain(m *testing.M) {
 	opts := godog.Options{
 		Output: colors.Colored(os.Stdout),
 		Format: "progress",
-		Paths:  []string{"test/features"},
+		Paths:  []string{"features"},
 		Tags:   "", // 執行所有測試
 	}
 

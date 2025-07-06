@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/cucumber/godog"
-	"chinese_chess/src"
+	"github.com/mattli001/AI-100x-SE-Join-Quest/task2/src/chinesechess"
 )
 
 type ChineseChessSteps struct {
