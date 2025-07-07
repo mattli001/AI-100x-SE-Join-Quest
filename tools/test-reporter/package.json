@@ -1,0 +1,15 @@
+{
+  "name": "bdd-test-reporter",
+  "version": "1.0.0",
+  "description": "BDD 測試結果 HTML 報告產生器",
+  "main": "generate-html-report.js",
+  "scripts": {
+    "generate-report": "node generate-html-report.js"
+  },
+  "keywords": ["bdd", "testing", "html-report", "cucumber"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cucumber-html-reporter": "^7.2.0"
+  }
+}

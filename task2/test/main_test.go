@@ -11,7 +11,7 @@ import (
 func TestMain(m *testing.M) {
 	opts := godog.Options{
 		Output: colors.Colored(os.Stdout),
-		Format: "progress",
+		Format: "pretty,cucumber:reports/cucumber.json",
 		Paths:  []string{"features"},
 		Tags:   "", // 執行所有測試
 	}
@@ -36,14 +36,14 @@ func InitializeTestSuite(ctx *godog.TestSuiteContext) {
 func InitializeScenario(ctx *godog.ScenarioContext) {
 	// 中國象棋測試步驟
 	steps := &ChineseChessSteps{}
-	
+
 	// Given steps
 	ctx.Step(`^the board is empty except for a (.+) at \((\d+), (\d+)\)$`, steps.theBoardIsEmptyExceptForAPieceAt)
 	ctx.Step(`^the board has:$`, steps.theBoardHas)
-	
+
 	// When steps
 	ctx.Step(`^(.+) moves the (.+) from \((\d+), (\d+)\) to \((\d+), (\d+)\)$`, steps.playerMovesThePieceFromTo)
-	
+
 	// Then steps
 	ctx.Step(`^the move is legal$`, steps.theMoveIsLegal)
 	ctx.Step(`^the move is illegal$`, steps.theMoveIsIllegal)
