@@ -26,7 +26,7 @@ func TestFeatures(t *testing.T) {
 func InitializeScenario(ctx *godog.ScenarioContext) {
 	// 建立 Steps 實例
 	steps := &Steps{}
-	
+
 	// 註冊步驟
 	ctx.Step(`^棋盤為空，僅有一枚紅將於 \((\d+), (\d+)\)$`, steps.棋盤為空僅有一枚紅將於)
 	ctx.Step(`^紅方將從 \((\d+), (\d+)\) 移動至 \((\d+), (\d+)\)$`, steps.紅方將從移動至)
@@ -54,7 +54,7 @@ func TestMain(m *testing.M) {
 		Name:                "godogs",
 		ScenarioInitializer: InitializeScenario,
 		Options: &godog.Options{
-			Format:    "pretty",
+			Format:    "pretty,cucumber:reports/cucumber.json",
 			Paths:     []string{"features/chinese_chess_zhTW.feature"},
 			Randomize: -1,
 			Output:    colors.Colored(os.Stdout),
